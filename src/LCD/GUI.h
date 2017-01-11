@@ -9,7 +9,11 @@ static char height_char[3] = "150";
 static int weight = 50;
 static int height = 150;
 
-
+static char HW_char[2];
+static char SpO2_char[2] = "00";
+static char HR_char[2] = "00";
+static int SpO2_out = 0;
+static int HR_out = 0;
 
 
 

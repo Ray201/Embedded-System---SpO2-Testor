@@ -1,8 +1,0 @@
-#ifndef __TIMER_H
-#define __TIMER_H
-#include "stm32f4xx_conf.h"
-//////////////////////////////////////////////////////////////////////////////////	 
- 
-void Timerx_Init(void); 
- 
-#endif

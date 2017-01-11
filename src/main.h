@@ -6,10 +6,9 @@
 #include "stdlib.h" 
 #include "stm32f4xx_conf.h"
 #include "LCD/delay.h"
-#include "LCD/timer.h"
-#include "LCD/usart.h"
+
 #include "LCD/lcd.h"
-#include "LCD/exti.h"
+
 #include "LCD/touch.h"
 #include "SPO2/led.h"
 #include "stm32f4xx_rcc.h"

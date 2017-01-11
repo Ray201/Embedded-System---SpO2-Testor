@@ -1,7 +1,7 @@
 # Source files 
 SRCS = main.c system_stm32f4xx.c stm32f4xx_it.c
 
-LCD_SRCS = LCD/delay.c LCD/exti.c LCD/lcd.c LCD/spi.c LCD/timer.c LCD/touch.c LCD/usart.c LCD/GUI.c
+LCD_SRCS = LCD/delay.c LCD/lcd.c LCD/spi.c LCD/touch.c LCD/GUI.c
 SRCS += $(LCD_SRCS)
 
 SPO2_SRCS = SPO2/MAX30100_Driver.c SPO2/tm_stm32f4_i2c.c SPO2/tm_stm32f4_gpio.c SPO2/led.c

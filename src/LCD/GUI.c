@@ -1,5 +1,7 @@
 #include "GUI.h"
 
+static int mode_flag = 0;
+
 void GUI_Init(void)
 {
   	LCD_Clear(LGRAYBLUE);
@@ -35,16 +37,31 @@ void GUI_Init(void)
 
 }
 
+void HW_Eva(void)
+{
+    ;
+}
+
 void GUI_Result(void)
 {
     LCD_Clear(LGRAYBLUE);
-    LCD_String(15,20,"RESULT:",BLACK);
-    LCD_String(50,40,"H-W Evaluation:",BLACK);
-    LCD_String(75,40,"H-W Evaluation:",BLACK);
-    LCD_String(105,40,"SpO2:",BLACK);
-    LCD_String(130,40,"H-W Evaluation:",BLACK);
-    LCD_String(160,40,"HeartRate:",BLACK);
-    LCD_String(185,40,"H-W Evaluation:",BLACK);
+    LCD_String(10,20,"RESULT:",BLACK);
+    LCD_String(40,40,"H-W Evaluation:",BLACK);
+    
+    LCD_String(65,40,HW_char,BLACK);
+    
+    LCD_String(95,40,"SpO2:",BLACK);
+//    SpO2_out = SpO2;
+    itoa(SpO2_out, SpO2_char, 10);
+    LCD_String(120,40,SpO2_char,BLACK);
+    
+    LCD_String(150,40,"HeartRate:",BLACK);
+//    HR_out = HR;
+    itoa(HR_out, HR_char, 10);
+    LCD_String(175,40,HR_char,BLACK);
+    
+    LCD_Fill(20, 195, 120, 225,BLACK);
+    LCD_String(200,220,"MENU",LGRAYBLUE);
 }
 
 
@@ -109,6 +126,7 @@ void GUI_func_Female(void)
 void GUI_func_Start(void)
 {
     GUI_Result();
+    mode_flag = 1;
 }
 
 void GUI_func_Reset(void)
@@ -143,32 +161,50 @@ void Func_condition(void)
 static int touch_flag = 0;
 static int touch_counter = 0;
 
+
 void GUI_touch_set(void)
 {
     Func_condition();
     
-    int index = 0;
-    
-    for (index = 0; index < 8; index++)
+    if(mode_flag==0)
     {
-        if(f_cond[index])
+        
+        int index = 0;
+    
+        for (index = 0; index < 8; index++)
         {
-            if (touch_flag==index) {
-                if(touch_counter >= 100)
+            if(f_cond[index])
+            {
+                if (touch_flag==index)
                 {
-                    func[index]();
+                    if(touch_counter >= 10)
+                    {
+                        func[index]();
+                        touch_counter = 0;
+                    }
+                    else touch_counter++;
+                }
+                else
+                {
+                    touch_flag = index;
                     touch_counter = 0;
+                }
+            }
+        }
+    }
+    if(mode_flag==1)
+    {
+        if(f_cond[7])
+        {
+            
+                if(touch_counter >= 10)
+                {
+                    func[7]();
+                    touch_counter = 0;
+                    mode_flag = 0;
                 }
                 else touch_counter++;
 
-            }
-            else
-            {
-                touch_flag = index;
-                touch_counter = 0;
-                
-            }
-            
         }
     }
     

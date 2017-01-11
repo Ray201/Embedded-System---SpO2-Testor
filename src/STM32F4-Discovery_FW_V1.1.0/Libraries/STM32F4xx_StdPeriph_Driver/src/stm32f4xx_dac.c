@@ -35,7 +35,7 @@
   *
   *             2- Timers TRGO: TIM2, TIM4, TIM5, TIM6, TIM7 and TIM8 
   *                (DAC_Trigger_T2_TRGO, DAC_Trigger_T4_TRGO...)
-  *                The timer TRGO event should be selected using TIM_SelectOutputTrigger()
+  *                The timer TRGO event should be selected using f()
   *
   *             3- Software using DAC_Trigger_Software
   *
